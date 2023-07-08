@@ -20,4 +20,6 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - run: docker run --rm -d -p 5000:80 --name cargo-dev cargo-planner-image
+      - run: |
+          docker rm -f cargo-dev
+          docker run --rm -d -p 5000:80 --name cargo-dev cargo-planner-image
