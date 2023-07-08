@@ -13,12 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: |
-          docker build . --file Dockerfile --tag cargo-planner-image:latest
-          docker run --rm -p 5000:80 --name cargo-dev cargo-planner-image
+        run: docker build . --file Dockerfile --tag cargo-planner-image:latest
 
   deploy:
     runs-on: self-hosted
 
     steps:
-      - run: docker images
+      - run: docker run --rm -d -p 5000:80 --name cargo-dev cargo-planner-image
