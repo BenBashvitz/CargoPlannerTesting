@@ -16,6 +16,7 @@ jobs:
         run: docker build . --file Dockerfile --tag cargo-planner-image:latest
 
   deploy:
+    needs: build
     runs-on: self-hosted
 
     steps:
